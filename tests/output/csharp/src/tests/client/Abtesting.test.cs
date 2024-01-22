@@ -23,7 +23,6 @@ public class AbtestingClientTests
     var client = new AbtestingClient(new AbtestingConfig("appId", "apiKey", "us"), _echo);
     await client.CustomPostAsync("/test");
     EchoResponse result = _echo.LastResponse;
-
     {
       var regexp = new Regex(
         "^Algolia for Csharp \\(\\d+\\.\\d+\\.\\d+(-?.*)?\\)(; [a-zA-Z. ]+ (\\(\\d+((\\.\\d+)?\\.\\d+)?(-?.*)?\\))?)*(; Abtesting (\\(\\d+\\.\\d+\\.\\d+(-?.*)?\\)))(; [a-zA-Z. ]+ (\\(\\d+((\\.\\d+)?\\.\\d+)?(-?.*)?\\))?)*$"
@@ -58,7 +57,6 @@ public class AbtestingClientTests
   public async Task ParametersTest0()
   {
     var client = new AbtestingClient(new AbtestingConfig("my-app-id", "my-api-key"), _echo);
-
     await client.GetABTestAsync(123);
     EchoResponse result = _echo.LastResponse;
 
@@ -69,7 +67,6 @@ public class AbtestingClientTests
   public async Task ParametersTest1()
   {
     var client = new AbtestingClient(new AbtestingConfig("my-app-id", "my-api-key", "us"), _echo);
-
     await client.GetABTestAsync(123);
     EchoResponse result = _echo.LastResponse;
 

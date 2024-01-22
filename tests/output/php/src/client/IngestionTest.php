@@ -105,8 +105,6 @@ class IngestionTest extends TestCase implements HttpClientInterface
             'my-api-key',
             'us'
         );
-
-        // Make sure everything went fine without errors
         $this->assertIsObject($client);
         $client->getSource(
             '6c02aeb1-775e-418e-870b-1faccd4b2c0f',
@@ -142,11 +140,7 @@ class IngestionTest extends TestCase implements HttpClientInterface
      */
     private function createClient($appId, $apiKey, $region = 'us')
     {
-        $config = IngestionConfig::create(
-            $appId,
-            $apiKey,
-            $region
-        );
+        $config = IngestionConfig::create($appId, $apiKey, $region);
         $clusterHosts = IngestionClient::getClusterHosts($config);
         $api = new ApiWrapper($this, $config, $clusterHosts);
 

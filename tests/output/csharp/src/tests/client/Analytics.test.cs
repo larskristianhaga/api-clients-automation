@@ -23,7 +23,6 @@ public class AnalyticsClientTests
     var client = new AnalyticsClient(new AnalyticsConfig("appId", "apiKey", "us"), _echo);
     await client.CustomPostAsync("/test");
     EchoResponse result = _echo.LastResponse;
-
     {
       var regexp = new Regex(
         "^Algolia for Csharp \\(\\d+\\.\\d+\\.\\d+(-?.*)?\\)(; [a-zA-Z. ]+ (\\(\\d+((\\.\\d+)?\\.\\d+)?(-?.*)?\\))?)*(; Analytics (\\(\\d+\\.\\d+\\.\\d+(-?.*)?\\)))(; [a-zA-Z. ]+ (\\(\\d+((\\.\\d+)?\\.\\d+)?(-?.*)?\\))?)*$"
@@ -58,7 +57,6 @@ public class AnalyticsClientTests
   public async Task ParametersTest0()
   {
     var client = new AnalyticsClient(new AnalyticsConfig("my-app-id", "my-api-key"), _echo);
-
     await client.GetAverageClickPositionAsync("my-index");
     EchoResponse result = _echo.LastResponse;
 
@@ -69,7 +67,6 @@ public class AnalyticsClientTests
   public async Task ParametersTest1()
   {
     var client = new AnalyticsClient(new AnalyticsConfig("my-app-id", "my-api-key", "de"), _echo);
-
     await client.CustomPostAsync("/test");
     EchoResponse result = _echo.LastResponse;
 

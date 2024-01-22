@@ -23,7 +23,6 @@ public class MonitoringClientTests
     var client = new MonitoringClient(new MonitoringConfig("appId", "apiKey"), _echo);
     await client.CustomPostAsync("/test");
     EchoResponse result = _echo.LastResponse;
-
     {
       var regexp = new Regex(
         "^Algolia for Csharp \\(\\d+\\.\\d+\\.\\d+(-?.*)?\\)(; [a-zA-Z. ]+ (\\(\\d+((\\.\\d+)?\\.\\d+)?(-?.*)?\\))?)*(; Monitoring (\\(\\d+\\.\\d+\\.\\d+(-?.*)?\\)))(; [a-zA-Z. ]+ (\\(\\d+((\\.\\d+)?\\.\\d+)?(-?.*)?\\))?)*$"
@@ -54,9 +53,13 @@ public class MonitoringClientTests
     Assert.Equal(30000, result.ResponseTimeout.TotalMilliseconds);
   }
 
-  [Fact(DisplayName = "uses the correct region")]
+  [Fact(DisplayName = "use the correct host")]
   public async Task ParametersTest0()
   {
     var client = new MonitoringClient(new MonitoringConfig("my-app-id", "my-api-key"), _echo);
+    await client.CustomDeleteAsync("/test");
+    EchoResponse result = _echo.LastResponse;
+
+    Assert.Equal("status.algolia.com", result.Host);
   }
 }

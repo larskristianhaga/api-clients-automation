@@ -105,8 +105,6 @@ class InsightsTest extends TestCase implements HttpClientInterface
             'my-api-key',
             null
         );
-
-        // Make sure everything went fine without errors
         $this->assertIsObject($client);
         $client->pushEvents(
             ['events' => [
@@ -147,8 +145,6 @@ class InsightsTest extends TestCase implements HttpClientInterface
             'my-api-key',
             'us'
         );
-
-        // Make sure everything went fine without errors
         $this->assertIsObject($client);
         $client->customDelete(
             '/test',
@@ -184,11 +180,7 @@ class InsightsTest extends TestCase implements HttpClientInterface
      */
     private function createClient($appId, $apiKey, $region = 'us')
     {
-        $config = InsightsConfig::create(
-            $appId,
-            $apiKey,
-            $region
-        );
+        $config = InsightsConfig::create($appId, $apiKey, $region);
         $clusterHosts = InsightsClient::getClusterHosts($config);
         $api = new ApiWrapper($this, $config, $clusterHosts);
 

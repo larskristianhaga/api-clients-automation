@@ -105,8 +105,6 @@ class AnalyticsTest extends TestCase implements HttpClientInterface
             'my-api-key',
             null
         );
-
-        // Make sure everything went fine without errors
         $this->assertIsObject($client);
         $client->getAverageClickPosition(
             'my-index',
@@ -127,8 +125,6 @@ class AnalyticsTest extends TestCase implements HttpClientInterface
             'my-api-key',
             'de'
         );
-
-        // Make sure everything went fine without errors
         $this->assertIsObject($client);
         $client->customPost(
             '/test',
@@ -180,11 +176,7 @@ class AnalyticsTest extends TestCase implements HttpClientInterface
      */
     private function createClient($appId, $apiKey, $region = 'us')
     {
-        $config = AnalyticsConfig::create(
-            $appId,
-            $apiKey,
-            $region
-        );
+        $config = AnalyticsConfig::create($appId, $apiKey, $region);
         $clusterHosts = AnalyticsClient::getClusterHosts($config);
         $api = new ApiWrapper($this, $config, $clusterHosts);
 

@@ -7,6 +7,7 @@ import com.algolia.codegen.utils.GenericPropagator;
 import com.algolia.codegen.utils.Helpers;
 import com.algolia.codegen.utils.OneOf;
 import com.samskivert.mustache.Mustache;
+import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
@@ -57,10 +58,10 @@ public class AlgoliaSwiftGenerator extends Swift5ClientCodegen {
       (Mustache.Lambda) (fragment, writer) -> writer.write(getClientName(fragment.execute()))
     );
     additionalProperties.put(
-      "lambda.to-encodable",
+      "lambda.to-codable",
       (Mustache.Lambda) (fragment, writer) -> {
         String initialType = fragment.execute();
-        writer.write(initialType.equalsIgnoreCase("AnyCodable") ? "Encodable" : initialType);
+        writer.write(initialType.equalsIgnoreCase("AnyCodable") ? "Codable" : initialType);
       }
     );
 
@@ -116,7 +117,6 @@ public class AlgoliaSwiftGenerator extends Swift5ClientCodegen {
     Helpers.setGenerationBanner(additionalProperties);
 
     try {
-      Helpers.generateServer(CLIENT, additionalProperties);
       additionalProperties.put("packageVersion", Helpers.getClientConfigField("swift", "packageVersion"));
       additionalProperties.put("packageList", Helpers.getClientListForLanguage("swift"));
     } catch (GeneratorException e) {
@@ -185,6 +185,12 @@ public class AlgoliaSwiftGenerator extends Swift5ClientCodegen {
       model.vendorExtensions.put("x-is-one-of", true);
       model.vendorExtensions.put("x-one-of-explicit-name", Helpers.shouldUseExplicitOneOfName(model.oneOf));
     }
+  }
+
+  @Override
+  public void processOpenAPI(OpenAPI openAPI) {
+    super.processOpenAPI(openAPI);
+    Helpers.generateServers(super.fromServers(openAPI.getServers()), additionalProperties);
   }
 
   @Override

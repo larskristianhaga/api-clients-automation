@@ -21,7 +21,6 @@ public class RecommendClientTests
   public async Task ApiTest0()
   {
     var client = new RecommendClient(new RecommendConfig("test-app-id", "test-api-key"), _echo);
-
     await client.CustomGetAsync("/test");
     EchoResponse result = _echo.LastResponse;
 
@@ -32,7 +31,6 @@ public class RecommendClientTests
   public async Task ApiTest1()
   {
     var client = new RecommendClient(new RecommendConfig("test-app-id", "test-api-key"), _echo);
-
     await client.CustomPostAsync("/test");
     EchoResponse result = _echo.LastResponse;
 
@@ -45,7 +43,6 @@ public class RecommendClientTests
     var client = new RecommendClient(new RecommendConfig("appId", "apiKey"), _echo);
     await client.CustomPostAsync("/test");
     EchoResponse result = _echo.LastResponse;
-
     {
       var regexp = new Regex(
         "^Algolia for Csharp \\(\\d+\\.\\d+\\.\\d+(-?.*)?\\)(; [a-zA-Z. ]+ (\\(\\d+((\\.\\d+)?\\.\\d+)?(-?.*)?\\))?)*(; Recommend (\\(\\d+\\.\\d+\\.\\d+(-?.*)?\\)))(; [a-zA-Z. ]+ (\\(\\d+((\\.\\d+)?\\.\\d+)?(-?.*)?\\))?)*$"

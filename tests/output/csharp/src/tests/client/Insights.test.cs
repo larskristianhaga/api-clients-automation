@@ -23,7 +23,6 @@ public class InsightsClientTests
     var client = new InsightsClient(new InsightsConfig("appId", "apiKey", "us"), _echo);
     await client.CustomPostAsync("/test");
     EchoResponse result = _echo.LastResponse;
-
     {
       var regexp = new Regex(
         "^Algolia for Csharp \\(\\d+\\.\\d+\\.\\d+(-?.*)?\\)(; [a-zA-Z. ]+ (\\(\\d+((\\.\\d+)?\\.\\d+)?(-?.*)?\\))?)*(; Insights (\\(\\d+\\.\\d+\\.\\d+(-?.*)?\\)))(; [a-zA-Z. ]+ (\\(\\d+((\\.\\d+)?\\.\\d+)?(-?.*)?\\))?)*$"
@@ -58,7 +57,6 @@ public class InsightsClientTests
   public async Task ParametersTest0()
   {
     var client = new InsightsClient(new InsightsConfig("my-app-id", "my-api-key"), _echo);
-
     await client.PushEventsAsync(
       new InsightsEvents
       {
@@ -90,7 +88,6 @@ public class InsightsClientTests
   public async Task ParametersTest1()
   {
     var client = new InsightsClient(new InsightsConfig("my-app-id", "my-api-key", "us"), _echo);
-
     await client.CustomDeleteAsync("/test");
     EchoResponse result = _echo.LastResponse;
 

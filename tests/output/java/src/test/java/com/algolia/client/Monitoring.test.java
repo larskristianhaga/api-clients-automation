@@ -33,7 +33,6 @@ class MonitoringClientClientTests {
 
     client.customPost("/test");
     EchoResponse result = echo.getLastResponse();
-
     {
       String regexp =
         "^Algolia for Java \\(\\d+\\.\\d+\\.\\d+(-?.*)?\\)(; [a-zA-Z. ]+" +
@@ -72,8 +71,12 @@ class MonitoringClientClientTests {
   }
 
   @Test
-  @DisplayName("uses the correct region")
+  @DisplayName("use the correct host")
   void parametersTest0() {
     MonitoringClient client = new MonitoringClient("my-app-id", "my-api-key", buildClientOptions());
+    client.customDelete("/test");
+    EchoResponse result = echo.getLastResponse();
+
+    assertEquals("status.algolia.com", result.host);
   }
 }
