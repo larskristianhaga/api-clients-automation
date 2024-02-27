@@ -1,0 +1,9 @@
+package	licence
+github.com/davecgh/go-spew	ISC
+github.com/go-playground/assert/v2	MIT
+github.com/go-playground/locales	MIT
+github.com/go-playground/universal-translator	MIT
+github.com/pmezard/go-difflib	BSD-3-Clause
+github.com/stretchr/testify	MIT
+golang.org/x/text	BSD-3-Clause
+gopkg.in/yaml.v3	MIT
