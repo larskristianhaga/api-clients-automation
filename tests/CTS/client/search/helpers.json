@@ -1,0 +1,25 @@
+[
+  {
+    "testName": "generate secured api key basic",
+    "steps": [
+      {
+        "type": "method",
+        "object": "$client",
+        "path": "generateSecuredApiKey",
+        "parameters": {
+          "parentAPIKey": "2640659426d5107b6e47d75db9cbaef8",
+          "restrictions": {
+            "validUntil": 2524604400,
+            "restrictIndices": [
+              "Movies"
+            ]
+          }
+        },
+        "expected": {
+          "type": "response",
+          "match": "MGRlZmM3NTRlNWFmYzhiMDU1MzZiYzJmYzhmNDUzODMyNjBkOTg5ZThlNmEyMDFjN2Y1NmRhMTVmY2QyYTVlYXZhbGlkVW50aWw9MjUyNDYwNDQwMCZyZXN0cmljdEluZGljZXM9TW92aWVz"
+        }
+      }
+    ]
+  }
+]

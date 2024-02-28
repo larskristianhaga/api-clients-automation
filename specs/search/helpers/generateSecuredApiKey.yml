@@ -14,7 +14,7 @@ method:
       If you want to limit the number of requests that can be made with a secured API key, you must also rate-limit the key that you use to generate it. You can create a rate-limited key in the Algolia dashboard or use the Add API key or Update API key methods of an API client.
     parameters:
       - in: query
-        name: apiKey
+        name: parentAPIKey
         description: The search-only API key that the secured API key will inherit its restrictions from.
         required: true
         schema:
