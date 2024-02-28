@@ -344,9 +344,16 @@ func encodeRestrictions(restrictions *SecuredAPIKeyRestrictions) (string, error)
     }
   }
 
-  queryString := make([]string, 0, len(toSerialize))
-	for k, v := range toSerialize {
-		queryString = append(queryString, k+"="+queryParameterToString(v))
+  // sort the keys to ensure consistent encoding
+	keys := make([]string, 0, len(toSerialize))
+	for k := range toSerialize {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
+	queryString := make([]string, 0, len(toSerialize))
+	for _, k := range keys {
+		queryString = append(queryString, k+"="+queryParameterToString(toSerialize[k]))
 	}
 
 	return strings.Join(queryString, "&"), nil
