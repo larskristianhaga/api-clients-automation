@@ -296,9 +296,9 @@ func (c *APIClient) WaitForApiKeyWithContext(
 
 // GenerateSecuredApiKey generates a public API key intended to restrict access
 // to certain records. This new key is built upon the existing key named
-// `parentApiKey` and the following options:
-func (c *APIClient) GenerateSecuredApiKey(parentApiKey string, restrictions *SecuredAPIKeyRestrictions) (string, error) {
-	h := hmac.New(sha256.New, []byte(parentApiKey))
+// `parentAPIKey` and the following options:
+func (c *APIClient) GenerateSecuredApiKey(parentAPIKey string, restrictions *SecuredAPIKeyRestrictions) (string, error) {
+	h := hmac.New(sha256.New, []byte(parentAPIKey))
 
 	message, err := encodeRestrictions(restrictions)
   if err != nil {

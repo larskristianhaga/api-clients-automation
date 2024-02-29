@@ -440,15 +440,15 @@ public extension SearchClient {
     }
 
     /// Generate a secured API key
-    /// - parameter parentApiKey: The parent API key
+    /// - parameter parentAPIKey: The parent API key
     /// - parameter restriction: The restrictions
     /// - returns: String?
     func generateSecuredApiKey(
-        parentApiKey: String,
+        parentAPIKey: String,
         with restriction: SecuredAPIKeyRestrictions = SecuredAPIKeyRestrictions()
     ) throws -> String? {
         let queryParams = try restriction.toURLEncodedString()
-        let hash = queryParams.hmac256(withKey: parentApiKey)
+        let hash = queryParams.hmac256(withKey: parentAPIKey)
         return "\(hash)\(queryParams)".data(using: .utf8)?.base64EncodedString()
     }
 

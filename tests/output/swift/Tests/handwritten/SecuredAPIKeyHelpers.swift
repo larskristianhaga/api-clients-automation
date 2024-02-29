@@ -15,7 +15,7 @@ class SecuredApiKeyHelpersTests: XCTestCase {
         let client = try SearchClient(appID: "my-app-id", apiKey: "my-api-key")
 
         let securedApiKey = try client.generateSecuredApiKey(
-            parentApiKey: "parent-api-key"
+            parentAPIKey: "parent-api-key"
         )
 
         guard let securedApiKey else {
@@ -35,7 +35,7 @@ class SecuredApiKeyHelpersTests: XCTestCase {
         let client = try SearchClient(appID: "my-app-id", apiKey: "my-api-key")
 
         let securedApiKey = try client.generateSecuredApiKey(
-            parentApiKey: "parent-api-key",
+            parentAPIKey: "parent-api-key",
             with: SecuredAPIKeyRestrictions(
                 searchParams: SearchParamsObject(hitsPerPage: 2),
                 validUntil: Int64(now + .seconds(13)),

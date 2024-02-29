@@ -264,14 +264,14 @@ public static class ClientExtensions
   /// Generate a virtual API Key without any call to the server.
   /// </summary>
   /// <param name="client"></param>
-  /// <param name="parentApiKey">Parent API Key</param>
+  /// <param name="parentAPIKey">Parent API Key</param>
   /// <param name="restriction">Restriction to add the key</param>
   /// <returns></returns>
-  public static string GenerateSecuredApiKey(this SearchClient client, string parentApiKey,
+  public static string GenerateSecuredApiKey(this SearchClient client, string parentAPIKey,
     SecuredAPIKeyRestrictions restriction)
   {
     var queryParams = restriction.ToQueryString();
-    var hash = HmacShaHelper.GetHash(parentApiKey, queryParams);
+    var hash = HmacShaHelper.GetHash(parentAPIKey, queryParams);
     return HmacShaHelper.Base64Encode($"{hash}{queryParams}");
   }
 

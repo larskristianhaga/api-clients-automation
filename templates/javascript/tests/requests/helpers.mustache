@@ -1,6 +1,6 @@
 describe('generateSecuredApiKey', () => {
   test('generates a key without restrictions', () => {
-    const resp = client.generateSecuredApiKey({ parentApiKey: 'foo' });
+    const resp = client.generateSecuredApiKey({ parentAPIKey: 'foo' });
     expect(resp).toEqual(
       'NjgzNzE2ZDlkN2Y4MmVlZDE3NGM2Y2FlYmUwODZlZTkzMzc2Yzc5ZDdjNjFkZDY3MGVhMDBmN2Y4ZDZlYjBhOA=='
     );
@@ -8,7 +8,7 @@ describe('generateSecuredApiKey', () => {
 
   test('generates a key with restrictions', () => {
     const resp = client.generateSecuredApiKey({
-      parentApiKey: 'foo',
+      parentAPIKey: 'foo',
       restrictions: {
         validUntil: 100,
         restrictIndices: ['bar'],
@@ -28,7 +28,7 @@ describe('generateSecuredApiKey', () => {
 describe('getSecuredApiKeyRemainingValidity', () => {
   test('is able to check the remaining validity of a key', () => {
     const resp = client.generateSecuredApiKey({
-      parentApiKey: 'foo',
+      parentAPIKey: 'foo',
       restrictions: { validUntil: 42 },
     });
     expect(resp).toEqual(
