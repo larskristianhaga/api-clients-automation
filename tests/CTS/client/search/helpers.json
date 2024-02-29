@@ -7,7 +7,7 @@
         "object": "$client",
         "path": "generateSecuredApiKey",
         "parameters": {
-          "parentAPIKey": "2640659426d5107b6e47d75db9cbaef8",
+          "parentApiKey": "2640659426d5107b6e47d75db9cbaef8",
           "restrictions": {
             "validUntil": 2524604400,
             "restrictIndices": [
@@ -30,7 +30,7 @@
         "object": "$client",
         "path": "generateSecuredApiKey",
         "parameters": {
-          "parentAPIKey": "2640659426d5107b6e47d75db9cbaef8",
+          "parentApiKey": "2640659426d5107b6e47d75db9cbaef8",
           "restrictions": {
             "validUntil": 2524604400,
             "restrictIndices": [

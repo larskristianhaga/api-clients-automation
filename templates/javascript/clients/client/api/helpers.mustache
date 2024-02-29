@@ -264,20 +264,24 @@ searchForFacets(
 },
 
 /**
- * Helper: Generates a secured API key based on the given `parentAPIKey` and given `restrictions`.
+ * Helper: Generates a secured API key based on the given `parentApiKey` and given `restrictions`.
  *
- * @summary Helper: Generates a secured API key based on the given `parentAPIKey` and given `restrictions`.
+ * @summary Helper: Generates a secured API key based on the given `parentApiKey` and given `restrictions`.
  * @param generateSecuredApiKey - The `generateSecuredApiKey` object.
- * @param generateSecuredApiKey.parentAPIKey - The base API key from which to generate the new secured one.
+ * @param generateSecuredApiKey.parentApiKey - The base API key from which to generate the new secured one.
  * @param generateSecuredApiKey.restrictions - A set of properties defining the restrictions of the secured API key.
  */
 generateSecuredApiKey({
-  parentAPIKey,
+  parentApiKey,
   restrictions = {},
 }: GenerateSecuredApiKeyOptions): string {
-  const queryParameters = serializeQueryParameters(restrictions);
+  const queryParameters = serializeQueryParameters({
+    ...restrictions,
+    ...restrictions.searchParams,
+    searchParams: undefined,
+  });
   return Buffer.from(
-    createHmac('sha256', parentAPIKey)
+    createHmac('sha256', parentApiKey)
       .update(queryParameters)
       .digest('hex') + queryParameters
   ).toString('base64');

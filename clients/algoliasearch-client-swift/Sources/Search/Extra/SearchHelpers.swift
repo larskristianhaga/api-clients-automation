@@ -440,23 +440,23 @@ public extension SearchClient {
     }
 
     /// Generate a secured API key
-    /// - parameter parentAPIKey: The parent API key
+    /// - parameter parentApiKey: The parent API key
     /// - parameter restriction: The restrictions
     /// - returns: String?
     func generateSecuredApiKey(
-        parentAPIKey: String,
-        with restriction: SecuredAPIKeyRestrictions = SecuredAPIKeyRestrictions()
+        parentApiKey: String,
+        with restriction: SecuredApiKeyRestrictions = SecuredApiKeyRestrictions()
     ) throws -> String? {
         let queryParams = try restriction.toURLEncodedString()
-        let hash = queryParams.hmac256(withKey: parentAPIKey)
+        let hash = queryParams.hmac256(withKey: parentApiKey)
         return "\(hash)\(queryParams)".data(using: .utf8)?.base64EncodedString()
     }
 
     /// Get the remaining validity of a secured API key
-    /// - parameter securedAPIKey: The secured API key
+    /// - parameter securedApiKey: The secured API key
     /// - returns: TimeInterval?
-    func getSecuredApiKeyRemainingValidity(for securedAPIKey: String) -> TimeInterval? {
-        guard let rawDecodedAPIKey = String(data: Data(base64Encoded: securedAPIKey) ?? Data(), encoding: .utf8),
+    func getSecuredApiKeyRemainingValidity(for securedApiKey: String) -> TimeInterval? {
+        guard let rawDecodedAPIKey = String(data: Data(base64Encoded: securedApiKey) ?? Data(), encoding: .utf8),
               !rawDecodedAPIKey.isEmpty else {
             return nil
         }
