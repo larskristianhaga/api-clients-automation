@@ -38,7 +38,7 @@
               "cts_e2e_settings"
             ],
             "restrictSources": "192.168.1.0/24",
-            "filters": "(category:Book OR category:Ebook) AND _tags:published",
+            "filters": "category:Book OR category:Ebook AND _tags:published",
             "userToken": "user123",
             "searchParams": {
               "query": "batman",
@@ -49,7 +49,7 @@
         },
         "expected": {
           "type": "response",
-          "match": "Yzc4ODgwZDc0YWYxZWI2NjUyMjZmMTYzZTBmNWRjY2E3NjY4OTQzNmI1ZWUyYTk1ZTRmY2ZlN2ZjMGY4M2VlNmFyb3VuZFJhZGl1cz1hbGwmZmlsdGVycz0lMjhjYXRlZ29yeSUzQUJvb2slMjBPUiUyMGNhdGVnb3J5JTNBRWJvb2slMjklMjBBTkQlMjBfdGFncyUzQXB1Ymxpc2hlZCZxdWVyeT1iYXRtYW4mcmVzdHJpY3RJbmRpY2VzPU1vdmllcyUyQ2N0c19lMmVfc2V0dGluZ3MmcmVzdHJpY3RTb3VyY2VzPTE5Mi4xNjguMS4wJTJGMjQmdHlwb1RvbGVyYW5jZT1zdHJpY3QmdXNlclRva2VuPXVzZXIxMjMmdmFsaWRVbnRpbD0yNTI0NjA0NDAw"
+          "match": "NTUwNGJlOWUxYWUyZjUzNDEwNmZhMjZjMTljN2U4MmMwNWU4ODQ1ZWQ4NjQ4OTkxZWU5N2Q1ZWU4MGI1ODVkZmFyb3VuZFJhZGl1cz1hbGwmZmlsdGVycz1jYXRlZ29yeSUzQUJvb2slMjBPUiUyMGNhdGVnb3J5JTNBRWJvb2slMjBBTkQlMjBfdGFncyUzQXB1Ymxpc2hlZCZxdWVyeT1iYXRtYW4mcmVzdHJpY3RJbmRpY2VzPU1vdmllcyUyQ2N0c19lMmVfc2V0dGluZ3MmcmVzdHJpY3RTb3VyY2VzPTE5Mi4xNjguMS4wJTJGMjQmdHlwb1RvbGVyYW5jZT1zdHJpY3QmdXNlclRva2VuPXVzZXIxMjMmdmFsaWRVbnRpbD0yNTI0NjA0NDAw"
         }
       }
     ]
