@@ -168,13 +168,11 @@
         """
         Helper: Generates a secured API key based on the given `parent_api_key` and given `restrictions`.
         """
-        query_parameters = dumps(
-            QueryParametersSerializer(
+        query_parameters = QueryParametersSerializer(
                 restrictions.to_dict()
                 if isinstance(restrictions, SecuredApiKeyRestrictions)
                 else restrictions
-            ).query_parameters
-        )
+            ).encoded()
 
         secured_key = hmac.new(
             parent_api_key.encode(encoding="utf-8"),
