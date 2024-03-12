@@ -65,6 +65,7 @@
     "@algolia/client-common": "5.0.0-alpha.107",
     "@algolia/client-personalization": "5.0.0-alpha.106",
     "@algolia/client-search": "5.0.0-alpha.106",
+    "@algolia/recommend": "5.0.0-alpha.106",
     "@algolia/requester-browser-xhr": "5.0.0-alpha.107",
     "@algolia/requester-node-http": "5.0.0-alpha.107"
   },

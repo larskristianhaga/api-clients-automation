@@ -11,9 +11,15 @@ import 'package:algoliasearch/src/model/around_radius_all.dart';
 import 'package:algoliasearch/src/model/automatic_facet_filter.dart';
 import 'package:algoliasearch/src/model/base_get_api_key_response.dart';
 import 'package:algoliasearch/src/model/base_index_settings.dart';
+import 'package:algoliasearch/src/model/base_recommend_request.dart';
+import 'package:algoliasearch/src/model/base_recommendations_query.dart';
+import 'package:algoliasearch/src/model/base_recommended_for_you_query.dart';
+import 'package:algoliasearch/src/model/base_recommended_for_you_query_parameters.dart';
 import 'package:algoliasearch/src/model/base_search_params.dart';
 import 'package:algoliasearch/src/model/base_search_params_without_query.dart';
 import 'package:algoliasearch/src/model/base_search_response.dart';
+import 'package:algoliasearch/src/model/base_trending_facets_query.dart';
+import 'package:algoliasearch/src/model/base_trending_items_query.dart';
 import 'package:algoliasearch/src/model/browse_params_object.dart';
 import 'package:algoliasearch/src/model/browse_response.dart';
 import 'package:algoliasearch/src/model/built_in_operation.dart';
@@ -41,6 +47,8 @@ import 'package:algoliasearch/src/model/facets.dart';
 import 'package:algoliasearch/src/model/facets_stats.dart';
 import 'package:algoliasearch/src/model/fetched_index.dart';
 import 'package:algoliasearch/src/model/get_api_key_response.dart';
+import 'package:algoliasearch/src/model/get_recommendations_params.dart';
+import 'package:algoliasearch/src/model/get_recommendations_response.dart';
 import 'package:algoliasearch/src/model/highlight_result_option.dart';
 import 'package:algoliasearch/src/model/hit.dart';
 import 'package:algoliasearch/src/model/index_settings.dart';
@@ -58,12 +66,23 @@ import 'package:algoliasearch/src/model/promote_object_id.dart';
 import 'package:algoliasearch/src/model/promote_object_ids.dart';
 import 'package:algoliasearch/src/model/query_type.dart';
 import 'package:algoliasearch/src/model/ranking_info.dart';
+import 'package:algoliasearch/src/model/recommend_hit.dart';
+import 'package:algoliasearch/src/model/recommend_models.dart';
+import 'package:algoliasearch/src/model/recommendation_models.dart';
+import 'package:algoliasearch/src/model/recommendations_hits.dart';
+import 'package:algoliasearch/src/model/recommendations_query.dart';
+import 'package:algoliasearch/src/model/recommendations_results.dart';
+import 'package:algoliasearch/src/model/recommended_for_you_model.dart';
+import 'package:algoliasearch/src/model/recommended_for_you_query.dart';
+import 'package:algoliasearch/src/model/recommended_for_you_query_parameters.dart';
 import 'package:algoliasearch/src/model/redirect.dart';
 import 'package:algoliasearch/src/model/redirect_rule_index_metadata.dart';
 import 'package:algoliasearch/src/model/redirect_rule_index_metadata_data.dart';
 import 'package:algoliasearch/src/model/remove_words_if_no_results.dart';
 import 'package:algoliasearch/src/model/rendering_content.dart';
 import 'package:algoliasearch/src/model/rule.dart';
+import 'package:algoliasearch/src/model/rule_response.dart';
+import 'package:algoliasearch/src/model/rule_response_metadata.dart';
 import 'package:algoliasearch/src/model/scope_type.dart';
 import 'package:algoliasearch/src/model/search_dictionary_entries_response.dart';
 import 'package:algoliasearch/src/model/search_for_facet_values_response.dart';
@@ -92,6 +111,11 @@ import 'package:algoliasearch/src/model/synonym_hit.dart';
 import 'package:algoliasearch/src/model/synonym_type.dart';
 import 'package:algoliasearch/src/model/task_status.dart';
 import 'package:algoliasearch/src/model/time_range.dart';
+import 'package:algoliasearch/src/model/trending_facet_hit.dart';
+import 'package:algoliasearch/src/model/trending_facets_model.dart';
+import 'package:algoliasearch/src/model/trending_facets_query.dart';
+import 'package:algoliasearch/src/model/trending_items_model.dart';
+import 'package:algoliasearch/src/model/trending_items_query.dart';
 import 'package:algoliasearch/src/model/typo_tolerance_enum.dart';
 import 'package:algoliasearch/src/model/updated_rule_response.dart';
 import 'package:algoliasearch/src/model/user_id.dart';
@@ -147,6 +171,18 @@ ReturnType deserialize<ReturnType, BaseType>(dynamic value, String targetType,
     case 'BaseIndexSettings':
       return BaseIndexSettings.fromJson(value as Map<String, dynamic>)
           as ReturnType;
+    case 'BaseRecommendRequest':
+      return BaseRecommendRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseRecommendationsQuery':
+      return BaseRecommendationsQuery.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseRecommendedForYouQuery':
+      return BaseRecommendedForYouQuery.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseRecommendedForYouQueryParameters':
+      return BaseRecommendedForYouQueryParameters.fromJson(
+          value as Map<String, dynamic>) as ReturnType;
     case 'BaseSearchParams':
       return BaseSearchParams.fromJson(value as Map<String, dynamic>)
           as ReturnType;
@@ -155,6 +191,12 @@ ReturnType deserialize<ReturnType, BaseType>(dynamic value, String targetType,
           value as Map<String, dynamic>) as ReturnType;
     case 'BaseSearchResponse':
       return BaseSearchResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseTrendingFacetsQuery':
+      return BaseTrendingFacetsQuery.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseTrendingItemsQuery':
+      return BaseTrendingItemsQuery.fromJson(value as Map<String, dynamic>)
           as ReturnType;
     case 'BrowseParamsObject':
       return BrowseParamsObject.fromJson(value as Map<String, dynamic>)
@@ -221,6 +263,12 @@ ReturnType deserialize<ReturnType, BaseType>(dynamic value, String targetType,
     case 'GetApiKeyResponse':
       return GetApiKeyResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
+    case 'GetRecommendationsParams':
+      return GetRecommendationsParams.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'GetRecommendationsResponse':
+      return GetRecommendationsResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
     case 'HighlightResultOption':
       return HighlightResultOption.fromJson(value as Map<String, dynamic>)
           as ReturnType;
@@ -263,6 +311,29 @@ ReturnType deserialize<ReturnType, BaseType>(dynamic value, String targetType,
       return QueryType.fromJson(value) as ReturnType;
     case 'RankingInfo':
       return RankingInfo.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'RecommendHit':
+      return RecommendHit.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'RecommendModels':
+      return RecommendModels.fromJson(value) as ReturnType;
+    case 'RecommendationModels':
+      return RecommendationModels.fromJson(value) as ReturnType;
+    case 'RecommendationsHits':
+      return RecommendationsHits.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'RecommendationsQuery':
+      return RecommendationsQuery.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'RecommendationsResults':
+      return RecommendationsResults.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'RecommendedForYouModel':
+      return RecommendedForYouModel.fromJson(value) as ReturnType;
+    case 'RecommendedForYouQuery':
+      return RecommendedForYouQuery.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'RecommendedForYouQueryParameters':
+      return RecommendedForYouQueryParameters.fromJson(
+          value as Map<String, dynamic>) as ReturnType;
     case 'Redirect':
       return Redirect.fromJson(value as Map<String, dynamic>) as ReturnType;
     case 'RedirectRuleIndexMetadata':
@@ -278,6 +349,11 @@ ReturnType deserialize<ReturnType, BaseType>(dynamic value, String targetType,
           as ReturnType;
     case 'Rule':
       return Rule.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'RuleResponse':
+      return RuleResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'RuleResponseMetadata':
+      return RuleResponseMetadata.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
     case 'ScopeType':
       return ScopeType.fromJson(value) as ReturnType;
     case 'SearchDictionaryEntriesResponse':
@@ -351,6 +427,19 @@ ReturnType deserialize<ReturnType, BaseType>(dynamic value, String targetType,
       return TaskStatus.fromJson(value) as ReturnType;
     case 'TimeRange':
       return TimeRange.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'TrendingFacetHit':
+      return TrendingFacetHit.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'TrendingFacetsModel':
+      return TrendingFacetsModel.fromJson(value) as ReturnType;
+    case 'TrendingFacetsQuery':
+      return TrendingFacetsQuery.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'TrendingItemsModel':
+      return TrendingItemsModel.fromJson(value) as ReturnType;
+    case 'TrendingItemsQuery':
+      return TrendingItemsQuery.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
     case 'TypoToleranceEnum':
       return TypoToleranceEnum.fromJson(value) as ReturnType;
     case 'UpdatedRuleResponse':

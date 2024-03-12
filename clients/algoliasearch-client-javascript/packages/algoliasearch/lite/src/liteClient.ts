@@ -19,6 +19,8 @@ import type {
   CustomPostProps,
   LegacySearchMethodProps,
 } from '../model/clientMethodProps';
+import type { GetRecommendationsParams } from '../model/getRecommendationsParams';
+import type { GetRecommendationsResponse } from '../model/getRecommendationsResponse';
 import type { SearchMethodParams } from '../model/searchMethodParams';
 import type { SearchResponses } from '../model/searchResponses';
 
@@ -151,6 +153,48 @@ export function createLiteClient({
         queryParameters,
         headers,
         data: body ? body : {},
+      };
+
+      return transporter.request(request, requestOptions);
+    },
+
+    /**
+     * Returns results from either recommendation or trending models:    - **Recommendations** are provided by the [Related Products](https://www.algolia.com/doc/guides/algolia-recommend/overview/#related-products-and-related-content) and [Frequently Bought Together](https://www.algolia.com/doc/guides/algolia-recommend/overview/#frequently-bought-together) models   - **Trending** models are [Trending Items and Trending Facet Values](https://www.algolia.com/doc/guides/algolia-recommend/overview/#trending-items-and-trending-facet-values).
+     *
+     * Required API Key ACLs:
+     * - search.
+     *
+     * @param getRecommendationsParams - The getRecommendationsParams object.
+     * @param requestOptions - The requestOptions to send along with the query, they will be merged with the transporter requestOptions.
+     */
+    getRecommendations(
+      getRecommendationsParams: GetRecommendationsParams,
+      requestOptions?: RequestOptions
+    ): Promise<GetRecommendationsResponse> {
+      if (!getRecommendationsParams) {
+        throw new Error(
+          'Parameter `getRecommendationsParams` is required when calling `getRecommendations`.'
+        );
+      }
+
+      if (!getRecommendationsParams.requests) {
+        throw new Error(
+          'Parameter `getRecommendationsParams.requests` is required when calling `getRecommendations`.'
+        );
+      }
+
+      const requestPath = '/1/indexes/*/recommendations';
+      const headers: Headers = {};
+      const queryParameters: QueryParameters = {};
+
+      const request: Request = {
+        method: 'POST',
+        path: requestPath,
+        queryParameters,
+        headers,
+        data: getRecommendationsParams,
+        useReadTransporter: true,
+        cacheable: true,
       };
 
       return transporter.request(request, requestOptions);

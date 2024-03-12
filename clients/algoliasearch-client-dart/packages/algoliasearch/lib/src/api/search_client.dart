@@ -4,6 +4,8 @@ import 'package:algolia_client_core/algolia_client_core.dart';
 import 'package:algoliasearch/src/deserialize.dart';
 import 'package:algoliasearch/src/version.dart';
 
+import 'package:algoliasearch/src/model/get_recommendations_params.dart';
+import 'package:algoliasearch/src/model/get_recommendations_response.dart';
 import 'package:algoliasearch/src/model/search_method_params.dart';
 import 'package:algoliasearch/src/model/search_responses.dart';
 
@@ -76,6 +78,35 @@ final class SearchClient implements ApiClient {
     return deserialize<Object, Object>(
       response,
       'Object',
+      growable: true,
+    );
+  }
+
+  /// Returns results from either recommendation or trending models:    - **Recommendations** are provided by the [Related Products](https://www.algolia.com/doc/guides/algolia-recommend/overview/#related-products-and-related-content) and [Frequently Bought Together](https://www.algolia.com/doc/guides/algolia-recommend/overview/#frequently-bought-together) models   - **Trending** models are [Trending Items and Trending Facet Values](https://www.algolia.com/doc/guides/algolia-recommend/overview/#trending-items-and-trending-facet-values).
+  ///
+  /// Required API Key ACLs:
+  ///   - search
+  ///
+  /// Parameters:
+  /// * [getRecommendationsParams]
+  /// * [requestOptions] additional request configuration.
+  Future<GetRecommendationsResponse> getRecommendations({
+    required GetRecommendationsParams getRecommendationsParams,
+    RequestOptions? requestOptions,
+  }) async {
+    final request = ApiRequest(
+      method: RequestMethod.post,
+      path: r'/1/indexes/*/recommendations',
+      isRead: true,
+      body: getRecommendationsParams.toJson(),
+    );
+    final response = await _retryStrategy.execute(
+      request: request,
+      options: requestOptions,
+    );
+    return deserialize<GetRecommendationsResponse, GetRecommendationsResponse>(
+      response,
+      'GetRecommendationsResponse',
       growable: true,
     );
   }

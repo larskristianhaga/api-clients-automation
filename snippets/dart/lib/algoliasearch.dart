@@ -15,6 +15,30 @@ void snippetForcustomPost() async {
   // SEPARATOR<
 }
 
+// Snippet for the getRecommendations method.
+//
+// get recommendations for recommend model with minimal parameters
+void snippetForgetRecommendations() async {
+  // >SEPARATOR getRecommendations
+  // Initialize the client
+  final client = SearchClient(appId: 'YOUR_APP_ID', apiKey: 'YOUR_API_KEY');
+
+  // Call the API
+  final response = await client.getRecommendations(
+    getRecommendationsParams: GetRecommendationsParams(
+      requests: [
+        RecommendationsQuery(
+          indexName: "indexName",
+          objectID: "objectID",
+          model: RecommendationModels.fromJson("related-products"),
+          threshold: 42,
+        ),
+      ],
+    ),
+  );
+  // SEPARATOR<
+}
+
 // Snippet for the search method.
 //
 // search for a single hits request with minimal parameters

@@ -3890,7 +3890,7 @@ components:
         - taskID
     parameters_query:
       type: string
-      description: Search query for rules.
+      description: Search query.
       default: ''
     parameters_page:
       type: integer
@@ -4285,6 +4285,251 @@ components:
             an issue if many users search from the same IP address.
 
             To avoid this, add a user token to each generated API key.
+    baseRecommendRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        indexName:
+          $ref: '#/components/schemas/indexName'
+        threshold:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: >
+            Recommendations with a confidence score lower than `threshold` won't
+            appear in results.
+
+            > **Note**: Each recommendation has a confidence score of 0 to 100.
+            The closer the score is to 100, the more relevant the
+            recommendations are.
+        maxRecommendations:
+          type: integer
+          default: 0
+          description: >-
+            Maximum number of recommendations to retrieve. If 0, all
+            recommendations will be returned.
+      required:
+        - indexName
+    facetName:
+      type: string
+      description: Facet name for trending models.
+    facetValue:
+      type: string
+      description: Facet value for trending models.
+    trendingItemsModel:
+      description: Trending items model.
+      type: string
+      enum:
+        - trending-items
+    baseTrendingItemsQuery:
+      type: object
+      additionalProperties: false
+      properties:
+        facetName:
+          $ref: '#/components/schemas/facetName'
+        facetValue:
+          $ref: '#/components/schemas/facetValue'
+        model:
+          $ref: '#/components/schemas/trendingItemsModel'
+        queryParameters:
+          $ref: '#/components/schemas/searchParamsObject'
+        fallbackParameters:
+          $ref: '#/components/schemas/searchParamsObject'
+    trendingItemsQuery:
+      allOf:
+        - $ref: '#/components/schemas/baseRecommendRequest'
+        - $ref: '#/components/schemas/baseTrendingItemsQuery'
+    trendingFacetsModel:
+      description: Trending facets model.
+      type: string
+      enum:
+        - trending-facets
+    baseTrendingFacetsQuery:
+      type: object
+      additionalProperties: false
+      properties:
+        facetName:
+          $ref: '#/components/schemas/facetName'
+        model:
+          $ref: '#/components/schemas/trendingFacetsModel'
+      required:
+        - facetName
+    trendingFacetsQuery:
+      allOf:
+        - $ref: '#/components/schemas/baseRecommendRequest'
+        - $ref: '#/components/schemas/baseTrendingFacetsQuery'
+    recommendationModels:
+      description: Recommendation model.
+      type: string
+      enum:
+        - related-products
+        - bought-together
+    baseRecommendationsQuery:
+      type: object
+      additionalProperties: false
+      properties:
+        model:
+          $ref: '#/components/schemas/recommendationModels'
+        objectID:
+          $ref: '#/components/schemas/objectID'
+        queryParameters:
+          $ref: '#/components/schemas/searchParamsObject'
+        fallbackParameters:
+          $ref: '#/components/schemas/searchParamsObject'
+      required:
+        - model
+        - objectID
+    recommendationsQuery:
+      allOf:
+        - $ref: '#/components/schemas/baseRecommendRequest'
+        - $ref: '#/components/schemas/baseRecommendationsQuery'
+    recommendedForYouModel:
+      description: Recommended for you model.
+      type: string
+      enum:
+        - recommended-for-you
+    baseRecommendedForYouQueryParameters:
+      type: object
+      properties:
+        userToken:
+          $ref: '#/components/schemas/userToken'
+      required:
+        - userToken
+    recommendedForYouQueryParameters:
+      allOf:
+        - $ref: '#/components/schemas/searchParamsObject'
+        - $ref: '#/components/schemas/baseRecommendedForYouQueryParameters'
+    baseRecommendedForYouQuery:
+      type: object
+      additionalProperties: false
+      properties:
+        model:
+          $ref: '#/components/schemas/recommendedForYouModel'
+        queryParameters:
+          $ref: '#/components/schemas/recommendedForYouQueryParameters'
+        fallbackParameters:
+          $ref: '#/components/schemas/recommendedForYouQueryParameters'
+      required:
+        - model
+    recommendedForYouQuery:
+      allOf:
+        - $ref: '#/components/schemas/baseRecommendRequest'
+        - $ref: '#/components/schemas/baseRecommendedForYouQuery'
+    recommendationsRequest:
+      oneOf:
+        - $ref: '#/components/schemas/trendingItemsQuery'
+        - $ref: '#/components/schemas/trendingFacetsQuery'
+        - $ref: '#/components/schemas/recommendationsQuery'
+        - $ref: '#/components/schemas/recommendedForYouQuery'
+    recommendScore:
+      type: number
+      format: double
+      minimum: 0
+      maximum: 100
+      description: Recommendation score.
+    recommendHit:
+      type: object
+      description: Recommend hit.
+      additionalProperties: true
+      required:
+        - objectID
+        - _score
+      properties:
+        objectID:
+          $ref: '#/components/schemas/objectID'
+        _highlightResult:
+          $ref: '#/components/schemas/highlightResultMap'
+        _snippetResult:
+          $ref: '#/components/schemas/snippetResultMap'
+        _rankingInfo:
+          $ref: '#/components/schemas/rankingInfo'
+        _distinctSeqID:
+          $ref: '#/components/schemas/_distinctSeqID'
+        _score:
+          $ref: '#/components/schemas/recommendScore'
+    trendingFacetHit:
+      type: object
+      description: Trending facet hit.
+      required:
+        - _score
+        - facetName
+        - facetValue
+      properties:
+        _score:
+          $ref: '#/components/schemas/recommendScore'
+        facetName:
+          $ref: '#/components/schemas/facetName'
+        facetValue:
+          $ref: '#/components/schemas/facetValue'
+    recommendationsHit:
+      oneOf:
+        - $ref: '#/components/schemas/recommendHit'
+        - $ref: '#/components/schemas/trendingFacetHit'
+    recommendationsHits:
+      type: object
+      additionalProperties: false
+      properties:
+        hits:
+          type: array
+          items:
+            $ref: '#/components/schemas/recommendationsHit'
+        query:
+          $ref: '#/components/schemas/query'
+        params:
+          type: string
+          description: URL-encoded string of all search parameters.
+          example: query=a&hitsPerPage=20
+      required:
+        - hits
+    recommendationsResults:
+      allOf:
+        - $ref: '#/components/schemas/baseSearchResponse'
+        - $ref: '#/components/schemas/recommendationsHits'
+    recommendModels:
+      type: string
+      enum:
+        - related-products
+        - bought-together
+        - trending-facets
+        - trending-items
+    RuleResponse:
+      type: object
+      description: Rule object.
+      additionalProperties: false
+      properties:
+        _metadata:
+          type: object
+          properties:
+            lastUpdate:
+              $ref: '#/components/schemas/updatedAt'
+        objectID:
+          type: string
+          description: Unique identifier for a rule object.
+          example: hide-12345
+        conditions:
+          type: array
+          description: >
+            [Conditions](https://www.algolia.com/doc/guides/managing-results/rules/rules-overview/#conditions)
+            required to activate a rule. You can use up to 25 conditions per
+            rule.
+          items:
+            $ref: '#/components/schemas/condition'
+        consequence:
+          $ref: '#/components/schemas/consequence'
+        description:
+          type: string
+          description: >-
+            Description of the rule's purpose. This can be helpful for display
+            in the Algolia dashboard.
+          example: Display a promotional banner
+        enabled:
+          type: boolean
+          default: true
+          description: >-
+            Indicates whether to enable the rule. If it isn't enabled, it isn't
+            applied at query time.
+      required:
+        - objectID
   responses:
     BadRequest:
       description: Bad request or request arguments.
@@ -4625,6 +4870,62 @@ paths:
                       $ref: '#/components/schemas/searchResult'
                 required:
                   - results
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/FeatureNotEnabled'
+        '403':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '404':
+          $ref: '#/components/responses/IndexNotFound'
+  /1/indexes/*/recommendations:
+    post:
+      tags:
+        - algoliasearch
+      operationId: getRecommendations
+      x-use-read-transporter: true
+      x-cacheable: true
+      x-acl:
+        - search
+      summary: Get recommendations and trending items.
+      description: |
+        Returns results from either recommendation or trending models:
+
+          - **Recommendations** are provided by the [Related Products](https://www.algolia.com/doc/guides/algolia-recommend/overview/#related-products-and-related-content) and [Frequently Bought Together](https://www.algolia.com/doc/guides/algolia-recommend/overview/#frequently-bought-together) models
+          - **Trending** models are [Trending Items and Trending Facet Values](https://www.algolia.com/doc/guides/algolia-recommend/overview/#trending-items-and-trending-facet-values).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: getRecommendationsParams
+              description: Recommend parameters.
+              type: object
+              additionalProperties: false
+              properties:
+                requests:
+                  type: array
+                  description: >-
+                    Request parameters depend on the model (recommendations or
+                    trending).
+                  items:
+                    $ref: '#/components/schemas/recommendationsRequest'
+              required:
+                - requests
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: getRecommendationsResponse
+                type: object
+                additionalProperties: false
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/recommendationsResults'
         '400':
           $ref: '#/components/responses/BadRequest'
         '402':
