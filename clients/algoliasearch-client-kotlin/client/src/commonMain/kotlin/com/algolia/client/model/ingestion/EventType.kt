@@ -15,6 +15,9 @@ public enum class EventType(public val value: kotlin.String) {
   @SerialName(value = "log")
   Log("log"),
 
+  @SerialName(value = "internal")
+  Internal("internal"),
+
   @SerialName(value = "transform")
   Transform("transform");
 

@@ -20,6 +20,8 @@ class EventType
 
     public const LOG = 'log';
 
+    public const INTERNAL = 'internal';
+
     public const TRANSFORM = 'transform';
 
     /**
@@ -33,6 +35,7 @@ class EventType
             self::FETCH,
             self::RECORD,
             self::LOG,
+            self::INTERNAL,
             self::TRANSFORM,
         ];
     }

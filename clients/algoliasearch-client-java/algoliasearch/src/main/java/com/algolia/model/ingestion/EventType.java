@@ -14,6 +14,8 @@ public enum EventType {
 
   LOG("log"),
 
+  INTERNAL("internal"),
+
   TRANSFORM("transform");
 
   private final String value;

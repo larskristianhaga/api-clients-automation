@@ -35,9 +35,15 @@ public enum EventType
   Log = 3,
 
   /// <summary>
+  /// Enum Internal for value: internal
+  /// </summary>
+  [JsonPropertyName("internal")]
+  Internal = 4,
+
+  /// <summary>
   /// Enum Transform for value: transform
   /// </summary>
   [JsonPropertyName("transform")]
-  Transform = 4
+  Transform = 5
 }
 

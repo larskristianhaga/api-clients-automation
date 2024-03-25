@@ -21,6 +21,7 @@ class EventType(str, Enum):
     FETCH = "fetch"
     RECORD = "record"
     LOG = "log"
+    INTERNAL = "internal"
     TRANSFORM = "transform"
 
     @classmethod

@@ -10,5 +10,6 @@ public enum EventType: String, Codable, CaseIterable {
     case fetch
     case record
     case log
+    case `internal`
     case transform
 }

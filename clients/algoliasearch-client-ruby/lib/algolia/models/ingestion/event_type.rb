@@ -9,10 +9,11 @@ module Algolia
       FETCH = "fetch".freeze
       RECORD = "record".freeze
       LOG = "log".freeze
+      INTERNAL = "internal".freeze
       TRANSFORM = "transform".freeze
 
       def self.all_vars
-        @all_vars ||= [FETCH, RECORD, LOG, TRANSFORM].freeze
+        @all_vars ||= [FETCH, RECORD, LOG, INTERNAL, TRANSFORM].freeze
       end
 
       # Builds the enum from string

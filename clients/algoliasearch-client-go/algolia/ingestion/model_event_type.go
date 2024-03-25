@@ -14,6 +14,7 @@ const (
 	EVENTTYPE_FETCH     EventType = "fetch"
 	EVENTTYPE_RECORD    EventType = "record"
 	EVENTTYPE_LOG       EventType = "log"
+	EVENTTYPE_INTERNAL  EventType = "internal"
 	EVENTTYPE_TRANSFORM EventType = "transform"
 )
 
@@ -22,6 +23,7 @@ var AllowedEventTypeEnumValues = []EventType{
 	"fetch",
 	"record",
 	"log",
+	"internal",
 	"transform",
 }
 
