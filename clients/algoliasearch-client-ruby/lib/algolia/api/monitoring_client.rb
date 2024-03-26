@@ -200,7 +200,7 @@ module Algolia
       @api_client.deserialize(response.body, request_options[:debug_return_type] || 'Object')
     end
 
-    # List known incidents for selected clusters.
+    # Retrieves known incidents for the selected clusters.
 
     # @param clusters [String] Subset of clusters, separated by comma. (required)
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -230,7 +230,7 @@ module Algolia
       @api_client.call_api(:GET, path, new_options)
     end
 
-    # List known incidents for selected clusters.
+    # Retrieves known incidents for the selected clusters.
 
     # @param clusters [String] Subset of clusters, separated by comma. (required)
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -240,7 +240,7 @@ module Algolia
       @api_client.deserialize(response.body, request_options[:debug_return_type] || 'Monitoring::IncidentsResponse')
     end
 
-    # Report whether a cluster is operational.
+    # Retrieves the status of selected clusters.
 
     # @param clusters [String] Subset of clusters, separated by comma. (required)
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -270,7 +270,7 @@ module Algolia
       @api_client.call_api(:GET, path, new_options)
     end
 
-    # Report whether a cluster is operational.
+    # Retrieves the status of selected clusters.
 
     # @param clusters [String] Subset of clusters, separated by comma. (required)
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -280,7 +280,7 @@ module Algolia
       @api_client.deserialize(response.body, request_options[:debug_return_type] || 'Monitoring::StatusResponse')
     end
 
-    # List known incidents for all clusters.
+    # Retrieves known incidents for all clusters.
 
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
     # @return [Http::Response] the response
@@ -304,7 +304,7 @@ module Algolia
       @api_client.call_api(:GET, path, new_options)
     end
 
-    # List known incidents for all clusters.
+    # Retrieves known incidents for all clusters.
 
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
     # @return [IncidentsResponse]
@@ -313,7 +313,7 @@ module Algolia
       @api_client.deserialize(response.body, request_options[:debug_return_type] || 'Monitoring::IncidentsResponse')
     end
 
-    # List the average times for indexing operations for selected clusters.
+    # Retrieves average times for indexing operations for selected clusters.
 
     # @param clusters [String] Subset of clusters, separated by comma. (required)
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -343,7 +343,7 @@ module Algolia
       @api_client.call_api(:GET, path, new_options)
     end
 
-    # List the average times for indexing operations for selected clusters.
+    # Retrieves average times for indexing operations for selected clusters.
 
     # @param clusters [String] Subset of clusters, separated by comma. (required)
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -353,7 +353,7 @@ module Algolia
       @api_client.deserialize(response.body, request_options[:debug_return_type] || 'Monitoring::IndexingTimeResponse')
     end
 
-    # List the servers belonging to clusters.  The response depends on whether you authenticate your API request:  - With authentication, the response lists the servers assigned to your Algolia application&#39;s cluster.  - Without authentication, the response lists the servers for all Algolia clusters.
+    # Retrieves the servers that belong to clusters.  The response depends on whether you authenticate your API request:  - With authentication, the response lists the servers assigned to your Algolia application&#39;s cluster.  - Without authentication, the response lists the servers for all Algolia clusters.
 
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
     # @return [Http::Response] the response
@@ -377,7 +377,7 @@ module Algolia
       @api_client.call_api(:GET, path, new_options)
     end
 
-    # List the servers belonging to clusters.  The response depends on whether you authenticate your API request:  - With authentication, the response lists the servers assigned to your Algolia application's cluster.  - Without authentication, the response lists the servers for all Algolia clusters.
+    # Retrieves the servers that belong to clusters.  The response depends on whether you authenticate your API request:  - With authentication, the response lists the servers assigned to your Algolia application's cluster.  - Without authentication, the response lists the servers for all Algolia clusters.
 
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
     # @return [InventoryResponse]
@@ -386,7 +386,7 @@ module Algolia
       @api_client.deserialize(response.body, request_options[:debug_return_type] || 'Monitoring::InventoryResponse')
     end
 
-    # List the average latency for search requests for selected clusters.
+    # Retrieves the average latency for search requests for selected clusters.
 
     # @param clusters [String] Subset of clusters, separated by comma. (required)
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -416,7 +416,7 @@ module Algolia
       @api_client.call_api(:GET, path, new_options)
     end
 
-    # List the average latency for search requests for selected clusters.
+    # Retrieves the average latency for search requests for selected clusters.
 
     # @param clusters [String] Subset of clusters, separated by comma. (required)
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -426,9 +426,9 @@ module Algolia
       @api_client.deserialize(response.body, request_options[:debug_return_type] || 'Monitoring::LatencyResponse')
     end
 
-    # Report the aggregate value of a metric for a selected period of time.
+    # Retrieves metrics related to your Algolia infrastructure, aggregated over a selected time window.  Access to this API is available as part of the [Premium or Elevate plans](https://www.algolia.com/pricing). You must authenticate requests with the &#x60;x-algolia-application-id&#x60; and &#x60;x-algolia-api-key&#x60; headers (using the Monitoring API key).
 
-    # @param metric [Metric] Metric to report.  For more information about the individual metrics, see the response. To include all metrics, use &#x60;*&#x60; as the parameter.  (required)
+    # @param metric [Metric] Metric to report.  For more information about the individual metrics, see the description of the API response. To include all metrics, use &#x60;*&#x60;.  (required)
     # @param period [Period] Period over which to aggregate the metrics:  - &#x60;minute&#x60;. Aggregate the last minute. 1 data point per 10 seconds. - &#x60;hour&#x60;. Aggregate the last hour. 1 data point per minute. - &#x60;day&#x60;. Aggregate the last day. 1 data point per 10 minutes. - &#x60;week&#x60;. Aggregate the last week. 1 data point per hour. - &#x60;month&#x60;. Aggregate the last month. 1 data point per day.  (required)
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
     # @return [Http::Response] the response
@@ -461,9 +461,9 @@ module Algolia
       @api_client.call_api(:GET, path, new_options)
     end
 
-    # Report the aggregate value of a metric for a selected period of time.
+    # Retrieves metrics related to your Algolia infrastructure, aggregated over a selected time window.  Access to this API is available as part of the [Premium or Elevate plans](https://www.algolia.com/pricing). You must authenticate requests with the `x-algolia-application-id` and `x-algolia-api-key` headers (using the Monitoring API key).
 
-    # @param metric [Metric] Metric to report.  For more information about the individual metrics, see the response. To include all metrics, use &#x60;*&#x60; as the parameter.  (required)
+    # @param metric [Metric] Metric to report.  For more information about the individual metrics, see the description of the API response. To include all metrics, use &#x60;*&#x60;.  (required)
     # @param period [Period] Period over which to aggregate the metrics:  - &#x60;minute&#x60;. Aggregate the last minute. 1 data point per 10 seconds. - &#x60;hour&#x60;. Aggregate the last hour. 1 data point per minute. - &#x60;day&#x60;. Aggregate the last day. 1 data point per 10 minutes. - &#x60;week&#x60;. Aggregate the last week. 1 data point per hour. - &#x60;month&#x60;. Aggregate the last month. 1 data point per day.  (required)
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
     # @return [InfrastructureResponse]
@@ -512,7 +512,7 @@ module Algolia
       @api_client.deserialize(response.body, request_options[:debug_return_type] || 'Monitoring::Hash<String, Hash>')
     end
 
-    # Report whether clusters are operational.  The response depends on whether you authenticate your API request.  - With authentication, the response includes the status of the cluster assigned to your Algolia application.  - Without authentication, the response lists the statuses of all public Algolia clusters.
+    # Retrieves the status of all Algolia clusters and instances.
 
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
     # @return [Http::Response] the response
@@ -536,7 +536,7 @@ module Algolia
       @api_client.call_api(:GET, path, new_options)
     end
 
-    # Report whether clusters are operational.  The response depends on whether you authenticate your API request.  - With authentication, the response includes the status of the cluster assigned to your Algolia application.  - Without authentication, the response lists the statuses of all public Algolia clusters.
+    # Retrieves the status of all Algolia clusters and instances.
 
     # @param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
     # @return [StatusResponse]

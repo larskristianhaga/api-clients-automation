@@ -451,7 +451,7 @@ class MonitoringClient:
         request_options: Optional[Union[dict, RequestOptions]] = None,
     ) -> ApiResponse[str]:
         """
-        List known incidents for selected clusters.
+        Retrieves known incidents for the selected clusters.
 
 
         :param clusters: Subset of clusters, separated by comma. (required)
@@ -484,7 +484,7 @@ class MonitoringClient:
         request_options: Optional[Union[dict, RequestOptions]] = None,
     ) -> IncidentsResponse:
         """
-        List known incidents for selected clusters.
+        Retrieves known incidents for the selected clusters.
 
 
         :param clusters: Subset of clusters, separated by comma. (required)
@@ -504,7 +504,7 @@ class MonitoringClient:
         request_options: Optional[Union[dict, RequestOptions]] = None,
     ) -> ApiResponse[str]:
         """
-        Report whether a cluster is operational.
+        Retrieves the status of selected clusters.
 
 
         :param clusters: Subset of clusters, separated by comma. (required)
@@ -537,7 +537,7 @@ class MonitoringClient:
         request_options: Optional[Union[dict, RequestOptions]] = None,
     ) -> StatusResponse:
         """
-        Report whether a cluster is operational.
+        Retrieves the status of selected clusters.
 
 
         :param clusters: Subset of clusters, separated by comma. (required)
@@ -553,7 +553,7 @@ class MonitoringClient:
         self, request_options: Optional[Union[dict, RequestOptions]] = None
     ) -> ApiResponse[str]:
         """
-        List known incidents for all clusters.
+        Retrieves known incidents for all clusters.
 
 
         :param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -573,7 +573,7 @@ class MonitoringClient:
         self, request_options: Optional[Union[dict, RequestOptions]] = None
     ) -> IncidentsResponse:
         """
-        List known incidents for all clusters.
+        Retrieves known incidents for all clusters.
 
 
         :param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -591,7 +591,7 @@ class MonitoringClient:
         request_options: Optional[Union[dict, RequestOptions]] = None,
     ) -> ApiResponse[str]:
         """
-        List the average times for indexing operations for selected clusters.
+        Retrieves average times for indexing operations for selected clusters.
 
 
         :param clusters: Subset of clusters, separated by comma. (required)
@@ -624,7 +624,7 @@ class MonitoringClient:
         request_options: Optional[Union[dict, RequestOptions]] = None,
     ) -> IndexingTimeResponse:
         """
-        List the average times for indexing operations for selected clusters.
+        Retrieves average times for indexing operations for selected clusters.
 
 
         :param clusters: Subset of clusters, separated by comma. (required)
@@ -640,7 +640,7 @@ class MonitoringClient:
         self, request_options: Optional[Union[dict, RequestOptions]] = None
     ) -> ApiResponse[str]:
         """
-        List the servers belonging to clusters.  The response depends on whether you authenticate your API request:  - With authentication, the response lists the servers assigned to your Algolia application's cluster.  - Without authentication, the response lists the servers for all Algolia clusters.
+        Retrieves the servers that belong to clusters.  The response depends on whether you authenticate your API request:  - With authentication, the response lists the servers assigned to your Algolia application's cluster.  - Without authentication, the response lists the servers for all Algolia clusters.
 
 
         :param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -660,7 +660,7 @@ class MonitoringClient:
         self, request_options: Optional[Union[dict, RequestOptions]] = None
     ) -> InventoryResponse:
         """
-        List the servers belonging to clusters.  The response depends on whether you authenticate your API request:  - With authentication, the response lists the servers assigned to your Algolia application's cluster.  - Without authentication, the response lists the servers for all Algolia clusters.
+        Retrieves the servers that belong to clusters.  The response depends on whether you authenticate your API request:  - With authentication, the response lists the servers assigned to your Algolia application's cluster.  - Without authentication, the response lists the servers for all Algolia clusters.
 
 
         :param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -678,7 +678,7 @@ class MonitoringClient:
         request_options: Optional[Union[dict, RequestOptions]] = None,
     ) -> ApiResponse[str]:
         """
-        List the average latency for search requests for selected clusters.
+        Retrieves the average latency for search requests for selected clusters.
 
 
         :param clusters: Subset of clusters, separated by comma. (required)
@@ -711,7 +711,7 @@ class MonitoringClient:
         request_options: Optional[Union[dict, RequestOptions]] = None,
     ) -> LatencyResponse:
         """
-        List the average latency for search requests for selected clusters.
+        Retrieves the average latency for search requests for selected clusters.
 
 
         :param clusters: Subset of clusters, separated by comma. (required)
@@ -728,7 +728,7 @@ class MonitoringClient:
         metric: Annotated[
             Metric,
             Field(
-                description="Metric to report.  For more information about the individual metrics, see the response. To include all metrics, use `*` as the parameter. "
+                description="Metric to report.  For more information about the individual metrics, see the description of the API response. To include all metrics, use `*`. "
             ),
         ],
         period: Annotated[
@@ -740,10 +740,10 @@ class MonitoringClient:
         request_options: Optional[Union[dict, RequestOptions]] = None,
     ) -> ApiResponse[str]:
         """
-        Report the aggregate value of a metric for a selected period of time.
+        Retrieves metrics related to your Algolia infrastructure, aggregated over a selected time window.  Access to this API is available as part of the [Premium or Elevate plans](https://www.algolia.com/pricing). You must authenticate requests with the `x-algolia-application-id` and `x-algolia-api-key` headers (using the Monitoring API key).
 
 
-        :param metric: Metric to report.  For more information about the individual metrics, see the response. To include all metrics, use `*` as the parameter.  (required)
+        :param metric: Metric to report.  For more information about the individual metrics, see the description of the API response. To include all metrics, use `*`.  (required)
         :type metric: Metric
         :param period: Period over which to aggregate the metrics:  - `minute`. Aggregate the last minute. 1 data point per 10 seconds. - `hour`. Aggregate the last hour. 1 data point per minute. - `day`. Aggregate the last day. 1 data point per 10 minutes. - `week`. Aggregate the last week. 1 data point per hour. - `month`. Aggregate the last month. 1 data point per day.  (required)
         :type period: Period
@@ -777,7 +777,7 @@ class MonitoringClient:
         metric: Annotated[
             Metric,
             Field(
-                description="Metric to report.  For more information about the individual metrics, see the response. To include all metrics, use `*` as the parameter. "
+                description="Metric to report.  For more information about the individual metrics, see the description of the API response. To include all metrics, use `*`. "
             ),
         ],
         period: Annotated[
@@ -789,10 +789,10 @@ class MonitoringClient:
         request_options: Optional[Union[dict, RequestOptions]] = None,
     ) -> InfrastructureResponse:
         """
-        Report the aggregate value of a metric for a selected period of time.
+        Retrieves metrics related to your Algolia infrastructure, aggregated over a selected time window.  Access to this API is available as part of the [Premium or Elevate plans](https://www.algolia.com/pricing). You must authenticate requests with the `x-algolia-application-id` and `x-algolia-api-key` headers (using the Monitoring API key).
 
 
-        :param metric: Metric to report.  For more information about the individual metrics, see the response. To include all metrics, use `*` as the parameter.  (required)
+        :param metric: Metric to report.  For more information about the individual metrics, see the description of the API response. To include all metrics, use `*`.  (required)
         :type metric: Metric
         :param period: Period over which to aggregate the metrics:  - `minute`. Aggregate the last minute. 1 data point per 10 seconds. - `hour`. Aggregate the last hour. 1 data point per minute. - `day`. Aggregate the last day. 1 data point per 10 minutes. - `week`. Aggregate the last week. 1 data point per hour. - `month`. Aggregate the last month. 1 data point per day.  (required)
         :type period: Period
@@ -860,7 +860,7 @@ class MonitoringClient:
         self, request_options: Optional[Union[dict, RequestOptions]] = None
     ) -> ApiResponse[str]:
         """
-        Report whether clusters are operational.  The response depends on whether you authenticate your API request.  - With authentication, the response includes the status of the cluster assigned to your Algolia application.  - Without authentication, the response lists the statuses of all public Algolia clusters.
+        Retrieves the status of all Algolia clusters and instances.
 
 
         :param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
@@ -880,7 +880,7 @@ class MonitoringClient:
         self, request_options: Optional[Union[dict, RequestOptions]] = None
     ) -> StatusResponse:
         """
-        Report whether clusters are operational.  The response depends on whether you authenticate your API request.  - With authentication, the response includes the status of the cluster assigned to your Algolia application.  - Without authentication, the response lists the statuses of all public Algolia clusters.
+        Retrieves the status of all Algolia clusters and instances.
 
 
         :param request_options: The request options to send along with the query, they will be merged with the transporter base parameters (headers, query params, timeouts, etc.). (optional)
